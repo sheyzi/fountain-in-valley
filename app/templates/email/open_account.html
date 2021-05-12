@@ -1,0 +1,16 @@
+<html>
+    <h4>Dear {{user.first_name}},</h4>
+    <br>
+    <p>Thanks for creating am account with Fountain in valley.</p>
+    <br>
+    <p>Login to your access your account with the details below</p>
+    <ul>
+        <li>Email = {{user.email}}</li>
+        <li>Phone = {{user.phone_number}}</li>
+        <li>Password = The password you used to register</li>
+    </ul>
+
+    <p>
+        <a href="{{login_link}}">Click Here</a> to login to your account.
+    </p>
+</html>

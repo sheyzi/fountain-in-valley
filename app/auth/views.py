@@ -1,4 +1,10 @@
+import random
 from flask import Blueprint, render_template, request, url_for, redirect,flash
+from app.models import User
+from app import bcrypt
+from app import db
+
+from app.email import send_email
 
 auth = Blueprint('auth', __name__)
 
@@ -12,5 +18,48 @@ def register():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         middle_name = request.form['middle_name']
-        flash(first_name, "success")
+        email = request.form['email']
+        phone_number = request.form['phone_number']
+        password1 = request.form['password']
+        password2 = request.form['confirm_password']
+        account_number = random.randint(1111111111, 1999999999)
+
+        if User.query.filter_by(email=email).first():
+            flash("Account with this email already exists", "error")
+
+        elif User.query.filter_by(phone_number=phone_number).first():
+            flash("Account with this phone number already exists", "error")
+
+        elif len(first_name) < 3:
+            flash("First name cannot be less than 3 characters", "error")
+
+        elif len(last_name) < 3:
+            flash("Last name cannot be less than 3 characters", "error")
+
+        elif password1 != password2:
+            flash("Passwords must be equal", "error")
+
+        else:
+            new_user = User()
+            new_user.first_name = first_name
+            new_user.last_name = last_name
+            if len(middle_name) > 0:
+                new_user.middle_name = middle_name
+            new_user.email = email
+            new_user.phone_number = phone_number
+            new_user.account_number = account_number
+            new_user.password = bcrypt.generate_password_hash(password1).decode('utf-8')
+
+            db.session.add(new_user)
+            db.session.commit()
+
+            send_email(new_user.email, "Fountain in valley - Account Login Details", 'open_account.html', user=new_user, login_html=f"{request.host}/login")
+            send_email(new_user.email, "Fountain in valley - Account Number", 'account_number.html', user=new_user, login_link=f"{request.host}/login")
+
+            flash("Account created succesfully!! Login to access your details!", "success")
+            return redirect(url_for('auth.login'))
+
+             
+                
+        
     return render_template('auth/register.html')

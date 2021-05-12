@@ -7,6 +7,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True, nullable=False)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
+    middle_name = db.Column(db.String(80))
     phone_number = db.Column(db.String(15), unique=True, nullable=False)
     account_number = db.Column(db.String(10), unique=True, nullable=False)
     account_balance = db.Column(db.Float, unique=True, nullable=False, default=0.00)
