@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+.btn-blue {
+    @apply bg-blue-500 text-white focus:outline-none font-bold py-2 px-4 rounded;
+}
+.btn-blue:hover {
+    @apply bg-blue-700;
+}
+
+.btn-red {
+    @apply bg-red-500 text-white focus:outline-none font-bold py-2 px-4 rounded;
+}
+.btn-red:hover {
+    @apply bg-red-700;
+}
+
+.btn-primary {
+    @apply bg-indigo-500 text-white focus:outline-none font-bold py-2 px-4 rounded;
+}
+.btn-primary:hover {
+    @apply bg-indigo-700;
+}
+
+.btn-secondary {
+    @apply bg-gray-500 text-white focus:outline-none font-bold py-2 px-4 rounded;
+}
+.btn-secondary:hover {
+    @apply bg-gray-700;
+}
+
+.login-container {
+    @apply min-h-screen text-gray-800 antialiased bg-gray-100 py-6 flex flex-col sm:py-12 justify-center;
+}
+
+.login-container-inner {
+    @apply relative py-3 sm:w-96 mx-auto text-center;
+}
+
+.form-label {
+    @apply block font-semibold;
+}
+
+.form-input {
+    @apply border w-full h-5 px-3 py-5 rounded-md mt-2 focus:ring-1 focus:ring-indigo-400 focus:outline-none;
+}
+@tailwind utilities;

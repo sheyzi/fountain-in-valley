@@ -1,0 +1,29 @@
+{% extends 'auth/base.html' %} {% block title %} Login - {% endblock title %} {%
+block content %}
+<h1 class="text-4xl font-bold">Welcome Back</h1>
+<span class="text-2xl mt-16 font-light">Login to access your account</span>
+
+<div class="shadow-md bg-white pb-4  rounded-lg text-left mt-4">
+  <div class="rounded-t-lg h-5 bg-indigo-500"></div>
+  <form action="" method="POST" class="px-8 py-6">
+    <div>
+      <label class="form-label">Email or Phone Number</label>
+      <input type="text" class="form-input" placeholder="Email" />
+    </div>
+    <div class="mt-4">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-input" placeholder="Password" />
+    </div>
+
+    <div class="flex justify-between mt-4">
+      <button class="btn-primary">Login</button>
+      <a href="#" class="text-sm hover:underline focus:underline"
+        >Forgot Passowrd</a
+      >
+    </div>
+  </form>
+  <p class=" text-center text-light">
+      Don't have an account?? <a href="#" class="text-indigo-400 hover:text-indigo-700 hover:underline">Sign Up</a>
+  </p>
+</div>
+{% endblock content %}

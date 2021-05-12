@@ -19,9 +19,14 @@ def create_app():
 
     bcrypt.init_app(app)
 
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     return User.query.get(user_id)
+    @login_manager.user_loader
+    def load_user(user_id):
+        pass
+        # return User.query.get(user_id)
+
+    from app.auth.views import auth
+
+    app.register_blueprint(auth, url_prefix='/')
 
     db.create_all(app=app)
 
