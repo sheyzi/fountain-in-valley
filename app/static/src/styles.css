@@ -43,4 +43,23 @@
 .form-input {
     @apply border w-full h-5 px-3 py-5 rounded-md mt-2 focus:ring-1 focus:ring-indigo-400 focus:outline-none;
 }
+
+.alert-warning {
+    @apply flex justify-between items-center bg-yellow-200 relative text-yellow-600 py-3 px-3 rounded-lg;
+}
+
+.alert-success {
+    @apply flex justify-between items-center bg-green-200 relative text-green-600 py-3 px-3 rounded-lg;
+}
+
+.alert-error {
+    @apply flex justify-between items-center bg-red-200 relative text-red-600 py-3 px-3 rounded-lg;
+}
+
+.alert-info {
+    @apply flex justify-between items-center bg-blue-200 relative text-blue-600 py-3 px-3 rounded-lg;
+}
+
+
+
 @tailwind utilities;

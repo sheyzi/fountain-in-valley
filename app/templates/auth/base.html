@@ -8,12 +8,25 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css')}}"
     />
+    <script src="{{url_for('static', filename='js/alpine.js')}}"></script>
+
     <title>{% block title %}{% endblock title %}Fountain In Valley</title>
   </head>
   <body>
     <div class="login-container">
       <div class="login-container-inner">
-        {% block content %} {% endblock content %}
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div x-data="{ show: true }" x-show="show" class="mb-4 alert-{{category}}">
+          <div>{{message}}</div>
+          <div>
+            <button type="button" @click="show = false" class="text-yellow-700">
+              <span class="text-2xl">&times;</span>
+            </button>
+          </div>
+        </div>
+        {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock
+        content %}
       </div>
     </div>
   </body>
