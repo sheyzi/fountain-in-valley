@@ -1,0 +1,52 @@
+{% extends 'auth/base.html' %} {% block title %} Register - {% endblock title %} {%
+    block content %}
+    <h1 class="text-4xl font-bold">Welcome</h1>
+    <span class="text-2xl mt-16 font-light">Become a member :)</span>
+    
+    <div class="shadow-md bg-white pb-4  rounded-lg text-left mt-4">
+      <div class="rounded-t-lg h-5 bg-indigo-500"></div>
+      <form action="" method="POST" class="px-8 py-6">
+        <!-- Personal Details -->
+        <div>
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" name="first_name" required placeholder="First Name" />
+        </div>
+        <div class="mt-4">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" name="last_name" required placeholder="Last Name" />
+        </div>
+        <div class="mt-4">
+          <label class="form-label">Middle Name</label>
+          <input type="text" class="form-input" name="middle_name" required placeholder="Middle Name" />
+        </div>
+
+        <!-- Contact Details -->
+        <div class="mt-4">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" name="email" required placeholder="Email Address" />
+        </div>
+        <div class="mt-4">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" name="phone_number" required placeholder="Phone Number" />
+        </div>
+
+        <!-- Passwords -->
+        <div class="mt-4">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" required class="form-input" placeholder="Password" />
+        </div>
+        <div class="mt-4">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" name="confirm_password" required class="form-input" placeholder="Confirm Password" />
+        </div>
+    
+        <div class="flex justify-between mt-4">
+          <button class="btn-primary">Sign Up</button>
+        </div>
+      </form>
+      <p class=" text-center text-light">
+          Already have an account?? <a href="{{url_for('auth.login')}}" class="text-indigo-400 hover:text-indigo-700 hover:underline">Login</a>
+      </p>
+    </div>
+    {% endblock content %}
+    

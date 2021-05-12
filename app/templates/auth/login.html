@@ -8,11 +8,11 @@ block content %}
   <form action="" method="POST" class="px-8 py-6">
     <div>
       <label class="form-label">Email or Phone Number</label>
-      <input type="text" class="form-input" placeholder="Email" />
+      <input type="text" class="form-input" name="username" required placeholder="Email" />
     </div>
     <div class="mt-4">
       <label class="form-label">Password</label>
-      <input type="password" class="form-input" placeholder="Password" />
+      <input type="password" class="form-input" name="password" required placeholder="Password" />
     </div>
 
     <div class="flex justify-between mt-4">
@@ -23,7 +23,7 @@ block content %}
     </div>
   </form>
   <p class=" text-center text-light">
-      Don't have an account?? <a href="#" class="text-indigo-400 hover:text-indigo-700 hover:underline">Sign Up</a>
+      Don't have an account?? <a href="{{url_for('auth.register')}}" class="text-indigo-400 hover:text-indigo-700 hover:underline">Sign Up</a>
   </p>
 </div>
 {% endblock content %}
