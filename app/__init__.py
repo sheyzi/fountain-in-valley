@@ -30,7 +30,7 @@ def create_app():
     from app.bank.views import bank
 
     app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(bank, url_prefix='/dashboard/')
+    app.register_blueprint(bank, url_prefix='/bank/')
 
     from app.models import User
     @login_manager.user_loader

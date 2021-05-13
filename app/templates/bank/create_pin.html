@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block message %} {% endblock message %}{% block
+title %} Transfer - {% endblock title %} {% block content %}
+<div class="login-container">
+  <div class="login-container-inner">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div x-data="{ show: true }" x-show="show" class="m-4 alert-{{category}}">
+      <div>{{message}}</div>
+      <div>
+        <button type="button" @click="show = false" class="text-yellow-700">
+          <span class="text-2xl">&times;</span>
+        </button>
+      </div>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    <h1 class="px-5 text-2xl uk-heading-bullet text-center">
+      Create 4 digit transaction pin
+    </h1>
+    <form action="" class="py-4 px-4 text-left uk-form-stacked" method="post">
+      <div class="uk-margin">
+        <label for="pin" class="uk-form-label">Create Pin</label>
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: lock"></span>
+          <input
+            type="password"
+            name="pin"
+            placeholder="Create pin"
+            id="pin"
+            class="uk-form-width-large uk-input"
+            required
+          />
+        </div>
+      </div>
+      <div class="uk-margin">
+        <label for="confirm_pin" class="uk-form-label">Confirm Pin</label>
+
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: lock"></span>
+          <input
+            type="password"
+            name="confirm_pin"
+            placeholder="Confirm your pin"
+            id="confirm_pin"
+            class="uk-form-width-large uk-input"
+            required
+          />
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <button type="submit" class="btn-primary">Create Pin</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

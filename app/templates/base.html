@@ -45,7 +45,7 @@
             <li class="uk-parent">
               <a>Transfer</a>
               <ul class="uk-nav-sub">
-                <li><a href="#">To Fountain in valley</a></li>
+                <li><a href="{{url_for('bank.transfer_fountain')}}">To Fountain in valley</a></li>
                 <li><a href="#">To other bank account</a></li>
               </ul>
             </li>
@@ -90,6 +90,7 @@
         </div>
       </div>
     </header>
+    {% block message %}
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %}
     <div x-data="{ show: true }" x-show="show" class="m-4 alert-{{category}}">
@@ -100,7 +101,7 @@
         </button>
       </div>
     </div>
-    {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock
+    {% endfor %} {% endif %} {% endwith %}{% endblock message %} {% block content %} {% endblock
     content %}
   </body>
 </html>

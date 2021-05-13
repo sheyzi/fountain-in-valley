@@ -1,5 +1,6 @@
 import random
 from flask import Blueprint, render_template, request, url_for, redirect,flash
+from flask_login.utils import login_required
 from app import email
 from app.models import User
 from app import bcrypt
@@ -98,6 +99,7 @@ def register():
     return render_template('auth/register.html')
 
 @auth.route('/logout/')
+@login_required
 def logout():
     logout_user()
     flash("Logged out successfully!!", "success")
