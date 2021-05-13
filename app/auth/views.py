@@ -1,19 +1,52 @@
 import random
 from flask import Blueprint, render_template, request, url_for, redirect,flash
+from app import email
 from app.models import User
 from app import bcrypt
+from flask_login import login_user, logout_user, current_user
 from app import db
 
 from app.email import send_email
 
 auth = Blueprint('auth', __name__)
 
+@auth.route('/')
+def home():
+    return redirect(url_for('bank.dashboard'))
+
 @auth.route('/login/', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        flash("You are already logged in", "info")
+        return redirect(url_for("bank.dashboard"))
+
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+
+        next_page = request.args.get('next')
+
+        if User.query.filter_by(email=username).first() and bcrypt.check_password_hash(User.query.filter_by(email=username).first().password, password):
+            flash("Login Succesful", "success")
+            user = User.query.filter_by(email=username).first()
+            login_user(user)
+            return redirect(next_page) if next_page else redirect(url_for('bank.dashboard'))
+        elif User.query.filter_by(phone_number=username).first() and bcrypt.check_password_hash(User.query.filter_by(phone_number=username).first().password, password):
+            flash("Login Succesful", "success")
+            user = User.query.filter_by(phone_number=username).first()
+            login_user(user)
+            return redirect(next_page) if next_page else redirect(url_for('bank.dashboard'))
+        else:
+            flash("Incorrect credentials", "error")
+
     return render_template('auth/login.html')
 
 @auth.route('/register/', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        flash("You are already logged in", "info")
+        return redirect(url_for("bank.dashboard"))
+        
     if request.method == "POST":
         first_name = request.form['first_name']
         last_name = request.form['last_name']
@@ -63,3 +96,9 @@ def register():
                 
         
     return render_template('auth/register.html')
+
+@auth.route('/logout/')
+def logout():
+    logout_user()
+    flash("Logged out successfully!!", "success")
+    return redirect(url_for('auth.login'))

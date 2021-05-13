@@ -8,13 +8,91 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css')}}"
     />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/uikit.min.css')}}"
+    />
+
+    <script src="{{url_for('static', filename='js/uikit.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/uikit-icons.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/alpine.js')}}"></script>
     <title>{% block title %}{% endblock title %}Fountain In Valley</title>
   </head>
-  <body>
+  <body class="antialiased">
+    <header>
+      <nav
+        class="uk-navbar uk-navbar-container uk-margin"
+        style="background-color: #7274f0"
+      >
+        <div class="uk-navbar-left text-white">
+          <a
+            style="color: white"
+            class="uk-navbar-toggle"
+            uk-navbar-toggle-icon
+            uk-toggle="target:#navbar-menu"
+          ></a>
+        </div>
+        <div class="uk-navbar-right text-white pr-4">
+          <span class="text-xl font-medium">Welcome, {{current_user.first_name.capitalize()}}</span>
+        </div>
+      </nav>
+      <div id="navbar-menu" uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar" style="background-color: #7274f0">
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
+            <li class=""><a href="{{url_for('bank.dashboard')}}">Dashboard</a></li>
+
+            
+            <li class="uk-parent">
+              <a>Transfer</a>
+              <ul class="uk-nav-sub">
+                <li><a href="#">To Fountain in valley</a></li>
+                <li><a href="#">To other bank account</a></li>
+              </ul>
+            </li>
+
+            <li class="uk-parent">
+              <a>Bill Payment</a>
+              <ul class="uk-nav-sub">
+                <li><a href="#">Airtime</a></li>
+                <li><a href="#">Data</a></li>
+              </ul>
+            </li>
+            <li class="uk-nav-header">Support</li>
+            <li>
+              <a href="#"
+                ><span
+                  class="uk-margin-small-right"
+                  uk-icon="icon: info"
+                ></span>
+                About</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><span
+                  class="uk-margin-small-right"
+                  uk-icon="icon: receiver"
+                ></span>
+                Contact</a
+              >
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li>
+              <a href="{{url_for('auth.logout')}}"
+                ><span
+                  class="uk-margin-small-right"
+                  uk-icon="icon: sign-out"
+                ></span>
+                Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %}
-    <div x-data="{ show: true }" x-show="show" class="mb-4 alert-{{category}}">
+    <div x-data="{ show: true }" x-show="show" class="m-4 alert-{{category}}">
       <div>{{message}}</div>
       <div>
         <button type="button" @click="show = false" class="text-yellow-700">

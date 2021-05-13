@@ -826,6 +826,61 @@ video {
   color: rgba(37, 99, 235, var(--tw-text-opacity));
 }
 
+.nav-link {
+  background-color: transparent;
+}
+
+.nav-link:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgba(55, 48, 163, var(--tw-bg-opacity));
+}
+
+.nav-link {
+  border-radius: 0.5rem;
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.nav-link:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.nav-link {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    margin-top: 0px;
+  }
+}
+
+.nav-link:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(55, 48, 163, var(--tw-bg-opacity));
+}
+
+.nav-bar {
+  --tw-bg-opacity: 1;
+  background-color: rgba(49, 46, 129, var(--tw-bg-opacity));
+  height: 100vh;
+  padding: 0.75rem;
+  position: absolute;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+  width: 20rem;
+  z-index: 10;
+}
+
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));

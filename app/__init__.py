@@ -27,8 +27,10 @@ def create_app():
     mail.init_app(app)
 
     from app.auth.views import auth
+    from app.bank.views import bank
 
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(bank, url_prefix='/dashboard/')
 
     from app.models import User
     @login_manager.user_loader
